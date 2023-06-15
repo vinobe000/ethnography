@@ -1,0 +1,30 @@
+
+In [31]: def display1(country):
+    ...:     if(country=="India"):
+    ...:         lang_india=list()
+    ...:         req=requests.get("https://www.ethnologue.com/country/IN/")
+    ...:         soup=BeautifulSoup(req.content,"html.parser")
+    ...:
+    ...:         for i in soup.find_all("dd",{"class":"languages__content entry__content"}):
+    ...:             lang_india.append(i.getText())
+    ...:
+    ...:         for i in lang_india:
+    ...:             print(i)
+    ...:     print(len(lang_india))
+    ...:
+
+In [32]: def display2(country):
+    ...:     if(country=="India"):
+    ...:         lang_india=list()
+    ...:         req=requests.get("https://www.ethnologue.com/country/IN/")
+    ...:         soup=BeautifulSoup(req.content,"html.parser")
+    ...:
+    ...:         for i in soup.find_all("dt",{"class":"languages__label entry__label"}):
+    ...:             lang_india.append(i.getText().replace("\n"," "))
+    ...:
+    ...:         for i in lang_india:
+    ...:             print(i)
+    ...:     print(len(lang_india))
+    ...:
+
+In [33]:
