@@ -1,0 +1,12 @@
+ class families():
+    familycontent={}
+    def __init__(self,address):
+         self.address=address
+         self.a=[]
+         req=requests.get("https://www.ethnologue.com/subgroup/"+str(self.address)+"/")
+         soup=BeautifulSoup(req.content,"lxml")
+         for i in soup.find_all("li",{"class":"subgroup__language"}):
+             self.a.append(i.contents[0].replace("\n"," "))
+         for i in soup.find_all("h1",{"class":"page__title"}):
+             self.family_name=i.getText()
+         families.familycontent.update({self.family_name:self.a})
